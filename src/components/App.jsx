@@ -1,51 +1,19 @@
-import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
-import { BsMoonStarsFill, BsSunFill } from "react-icons/bs";
+import { Actors, Movies, MovieInfo, Profile, Navbar } from "./index";
 
 const App = () => {
-  const { systemTheme, theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  const renderThemeChanger = () => {
-    if (!mounted) return null;
-
-    const currentTheme = theme === "system" ? systemTheme : theme;
-
-    if (currentTheme === "dark") {
-      return (
-        <div
-          className="rounded-full border-none cursor-pointer"
-          onClick={() => setTheme("light")}
-        >
-          <BsSunFill className="text-2xl" />
-        </div>
-      );
-    } else {
-      return (
-        <div
-          className="rounded-full border-none cursor-pointer"
-          onClick={() => setTheme("dark")}
-        >
-          <BsMoonStarsFill className="text-2xl" />
-        </div>
-      );
-    }
-  };
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
-    <div className="flex justify-center flex-col gap-10 items-center">
-      <div className="flex flex-col">
-        <h2 className="dark:text-yellow-300 text-red-500 text-3xl">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus,
-          quasi!
-        </h2>
-      </div>
-      <div>{renderThemeChanger()}</div>
+    <div>
+      <Navbar />
+      <Routes>
+        <Route exact path="/" element={<Movies />} />
+        <Route exact path="/approved" element={<Movies />} />
+        <Route exact path="/movie/:id" element={<MovieInfo />} />
+        <Route exact path="/actors/:id" element={<Actors />} />
+        <Route exact path="/profile/:id" element={<Profile />} />
+      </Routes>
     </div>
   );
 };

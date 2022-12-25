@@ -8,10 +8,10 @@ import App from "./components/App";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemeProvider attribute="class">
-      <Router>
-        <App />
-      </Router>
-    </ThemeProvider>
+    {/* <ThemeProvider attribute="class"> */}
+    <Router>
+      <App />
+    </Router>
+    {/* </ThemeProvider> */}
   </React.StrictMode>
 );
