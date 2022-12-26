@@ -1,3 +1,73 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    overflow: auto;
+}
+
+.btn {
+    @apply inline-flex text-white bg-blue-500 border-0 py-2 px-6 rounded text-lg
+}
+
+.btn:hover {
+    @apply bg-blue-600
+}
+
+.btn:focus {
+ @apply outline-none
+}
+
+.btn-white {
+    @apply inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 rounded text-lg
+}
+
+.btn-white:hover {
+    @apply bg-gray-200
+}
+
+.btn-white:focus {
+    @apply outline-none
+}
+
+.slide-left {
+    -webkit-animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+ 
+@-webkit-keyframes slide-left {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    100% {
+        -webkit-transform: translateX(-100px);
+        transform: translateX(-100px);
+    }
+}
+
+@keyframes slide-left {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    100% {
+        -webkit-transform: translateX(-100px);
+        transform: translateX(-100px);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #cfcfcf;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a5a5a5;
+}
+ 
