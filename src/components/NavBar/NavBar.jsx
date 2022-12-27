@@ -5,7 +5,7 @@ import {
   HiUserCircle,
   HiXMark,
 } from "react-icons/hi2";
-import Sidebar from "../Sidebar/Sidebar";
+import { Sidebar, Search } from "..";
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
@@ -42,7 +42,7 @@ const NavBar = () => {
             size={25}
           /> */}
           <HiMoon className="text-white cursor-pointer" size={25} />
-          <h2 className="text-xl hidden md:block text-white">Search...</h2>
+          <Search />
           {!isAuthenticated ? (
             <button className="inline-flex text-white bg-blue-500 border-0 rounded text-lg">
               <p className="hidden md:block">Login</p>

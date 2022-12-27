@@ -1,17 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import { useGetGenresQuery } from "../../services/TMDB";
+import { Spinner } from "..";
+import genresIcon from "../.././assets/genres";
+import { selectGenereOrCategory } from "../../features/currentGenreOrCategory";
 
 const Sidebar = ({ setMobileOpen }) => {
+  const { genreIdOrCategoryName } = useSelector(
+    (state) => state.currentGenreOrCategory
+  );
+  const { data, isFetching } = useGetGenresQuery();
+  const dispatch = useDispatch();
+
   const categories = [
     { label: "Popular", value: "popular" },
     { label: "Top Rated", value: "top_rated" },
     { label: "Upcoming", value: "upcoming" },
-  ];
-  const demoCategories = [
-    { label: "Comedy", value: "comedy" },
-    { label: "Adventure", value: "adventure" },
-    { label: "Action", value: "action" },
-    { label: "Horror", value: "horror" },
   ];
 
   const blueLogo =
@@ -31,8 +37,15 @@ const Sidebar = ({ setMobileOpen }) => {
         <h2 className="text-gray-600 mb-3">Categories</h2>
         {categories.map(({ label, value }) => (
           <ul key={value}>
-            <li className="text-xl mb-3">
-              <img src={""} alt="" height={30} />
+            <li
+              onClick={() => dispatch(selectGenereOrCategory(value))}
+              className="text-lg mb-3 text-gray-800 flex items-center gap-5 cursor-pointer"
+            >
+              <img
+                src={genresIcon[label.toLowerCase()]}
+                alt={label}
+                className="h-8"
+              />
               {label}
             </li>
           </ul>
@@ -40,14 +53,25 @@ const Sidebar = ({ setMobileOpen }) => {
       </div>
       <div className="p-5 border-b-2 border-r-fuchsia-200">
         <h2 className="text-gray-600 mb-3">Genres</h2>
-        {demoCategories.map(({ label, value }) => (
-          <ul key={value}>
-            <li className="text-xl mb-3">
-              <img src={""} alt="" height={30} />
-              {label}
-            </li>
-          </ul>
-        ))}
+        {isFetching ? (
+          <Spinner />
+        ) : (
+          data.genres.map(({ name, id }) => (
+            <ul key={id}>
+              <li
+                onClick={() => dispatch(selectGenereOrCategory(id))}
+                className="text-lg mb-3 text-gray-800 flex items-center gap-5 cursor-pointer"
+              >
+                <img
+                  src={genresIcon[name.toLowerCase()]}
+                  alt={name}
+                  className="h-8"
+                />
+                {name}
+              </li>
+            </ul>
+          ))
+        )}
       </div>
     </div>
   );

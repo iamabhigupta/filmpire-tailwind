@@ -14,7 +14,7 @@ const Movie = ({ movie, i }) => {
           <Link to={`movie/${movie.id}`}>
             <img
               alt={movie.title}
-              className={`h-[300px] rounded-xl mb-6`}
+              className={`h-[300px] rounded-xl mb-3`}
               src={
                 movie.poster_path
                   ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`

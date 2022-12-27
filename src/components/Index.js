@@ -7,3 +7,4 @@ export { default as Sidebar } from "./Sidebar/Sidebar";
 export { default as MoviesList } from "./MoviesList/MoviesList";
 export { default as Movie } from "./Movie/Movie";
 export { default as Spinner } from "./Spinner/Spinner";
+export { default as Search } from "./Search/Search";
