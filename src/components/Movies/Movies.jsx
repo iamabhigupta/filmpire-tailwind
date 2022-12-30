@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import { useGetMoviesQuery } from "../../services/TMDB";
-import { MoviesList, Spinner } from "..";
+import { useGetMoviesQuery } from '../../services/TMDB';
+import { MoviesList, Spinner } from '..';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
@@ -17,14 +17,17 @@ const Movies = () => {
   });
 
   if (isFetching) {
-    <Spinner />;
+    return <Spinner />;
   }
+
   if (!data?.results?.length) {
-    <h2 className="text-3xl">
-      No movies that match that name <br /> Please search for something else
-    </h2>;
+    return (
+      <h2 className="text-3xl">
+        No movies that match that name <br /> Please search for something else
+      </h2>
+    );
   }
-  if (error) "An error occurred";
+  if (error) 'An error occurred';
 
   return (
     <div>
